@@ -46,7 +46,7 @@
 
 #include <GLUT/glut.h>
 
-#include "hdk.h"
+#include <hdk/hdk.h>
 #include "totemGame.h"
 
 #include "hdLevelEditorUtilities.h"
@@ -421,7 +421,7 @@ private:
     totemEvent *m_currentEvent;
     
     // list of unique textures of all worlds loaded.
-    std::map<string, string> uniqueTextures;
+    std::map<std::string, std::string> uniqueTextures;
     
 };
 

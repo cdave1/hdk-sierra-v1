@@ -20,7 +20,7 @@
 #ifndef _HD_LEVELEDITOR_UTILITIES_
 #define _HD_LEVELEDITOR_UTILITIES_
 
-#include "hdk.h"
+#include <hdk/hdk.h>
 
 extern void hdDrawGameObjectHandles(hdGameObject* gameObject);
 

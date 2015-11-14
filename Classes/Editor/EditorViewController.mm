@@ -18,7 +18,7 @@
  */
 
 #import "EditorViewController.h"
-#import "hdGraphicsLibrary.h"
+#import <hdk/hdk.h>
 #import "LevelEditor.h"
 
 @interface EditorViewController ()

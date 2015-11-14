@@ -19,7 +19,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Quartz/Quartz.h>
-#import "hdk.h"
+#import <hdk/hdk.h>
 
 @interface TexturePaletteWindow : NSWindowController
 {

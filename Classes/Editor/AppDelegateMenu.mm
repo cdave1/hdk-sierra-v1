@@ -18,7 +18,7 @@
  */
 
 #import "AppDelegateMenu.h"
-#import "hdk.h"
+#import <hdk/hdk.h>
 #import "LevelEditor.h"
 
 @implementation AppDelegate (MainMenuCategory)

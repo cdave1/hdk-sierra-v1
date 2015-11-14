@@ -1455,8 +1455,7 @@ void hdLevelEditorController::ApplyCurrentTextureToSelected()
 }
 
 
-void hdLevelEditorController::DumpUniqueTextureList()
-{
+void hdLevelEditorController::DumpUniqueTextureList() {
     int i, j;
 
     totemLevel *lev;
@@ -1466,39 +1465,34 @@ void hdLevelEditorController::DumpUniqueTextureList()
     if (m_totemWorld == NULL) return;
     if (m_totemWorld->GetLevelCount() == 0) return;
 
-    for (i = 0; i< m_totemWorld->GetLevelCount(); ++i)
-    {
+    for (i = 0; i< m_totemWorld->GetLevelCount(); ++i) {
         lev = (totemLevel *)m_totemWorld->GetLevels()[i];
 
-        uniqueTextures[string(lev->GetSkyTextureName())] = string(lev->GetSkyTextureName());
-        uniqueTextures[string(lev->GetDistantBackgroundTextureName())] = string(lev->GetDistantBackgroundTextureName());
-        uniqueTextures[string(lev->GetFarBackgroundTextureName())] = string(lev->GetFarBackgroundTextureName());
-        uniqueTextures[string(lev->GetNearBackgroundTextureName())] = string(lev->GetNearBackgroundTextureName());
+        uniqueTextures[std::string(lev->GetSkyTextureName())] = std::string(lev->GetSkyTextureName());
+        uniqueTextures[std::string(lev->GetDistantBackgroundTextureName())] = std::string(lev->GetDistantBackgroundTextureName());
+        uniqueTextures[std::string(lev->GetFarBackgroundTextureName())] = std::string(lev->GetFarBackgroundTextureName());
+        uniqueTextures[std::string(lev->GetNearBackgroundTextureName())] = std::string(lev->GetNearBackgroundTextureName());
 
-        if (lev->GetFloorInfo() != NULL)
-        {
+        if (lev->GetFloorInfo() != NULL) {
             floor = (totemFloorInfo *)lev->GetFloorInfo();
-            uniqueTextures[string(floor->m_firstTextureName)] = string(floor->m_firstTextureName);
-            uniqueTextures[string(floor->m_secondTextureName)] = string(floor->m_secondTextureName);
+            uniqueTextures[std::string(floor->m_firstTextureName)] = std::string(floor->m_firstTextureName);
+            uniqueTextures[std::string(floor->m_secondTextureName)] = std::string(floor->m_secondTextureName);
         }
 
-        for (j = 0; j < lev->GetBlockCount(); ++j)
-        {
+        for (j = 0; j < lev->GetBlockCount(); ++j) {
             block = (totemBlock *)lev->GetBlocks()[j];
 
-            if (block->IsTextureChangeable())
-            {
-                uniqueTextures[string(block->GetTextureName())] = string(block->GetTextureName());
+            if (block->IsTextureChangeable()) {
+                uniqueTextures[std::string(block->GetTextureName())] = std::string(block->GetTextureName());
             }
         }
     }
 
-    map<string, string>::iterator iter;
+    std::map<std::string, std::string>::iterator iter;
 
     for (iter = uniqueTextures.begin();
          iter != uniqueTextures.end();
-         iter++)
-    {
+         iter++) {
         printf("%s\n", (*iter).first.c_str());
     }
 }
@@ -1675,7 +1669,7 @@ const bool hdLevelEditorController::BlockPassesFilter(const totemBlock *block) c
     {
         return true;
     }
-    else if (settings.showPhysics && 
+    else if (settings.showPhysics &&
              (block->IsDestroyable() || block->IsDraggable()))
     {
         return true;
@@ -1690,15 +1684,15 @@ void hdLevelEditorController::DrawModeInfo()
     {
         this->DrawString(600, 40, "Selected: Block");
     }
-    
+
     if (settings.interfacePaletteMode == e_interfacePaletteModeCursor)
     {
         this->DrawString(0, 20, "Cursor");
-    } 
+    }
     else if (settings.interfacePaletteMode == e_interfacePaletteModeAddTotemBlock)
     {
         this->DrawString(0, 20, "Add Totem Block: Texture: %s", settings.newTexturePath);
-    } 
+    }
     else if (settings.interfacePaletteMode == e_interfacePaletteModeTotemJack)
     {
         this->DrawString(0, 20, "Add Totem Jack");
@@ -1711,7 +1705,7 @@ void hdLevelEditorController::DrawModeInfo()
     {
         this->DrawString(0, 20, "Add Polygon: Texture: %s", settings.newTexturePath);
     }
-    
+
     if (settings.interfaceLayerMode & e_interfaceLayerModeForeground)
     {
         this->DrawString(800, 20, "Active Layer: Foreground");
@@ -1730,28 +1724,28 @@ void hdLevelEditorController::DrawModeInfo()
 void hdLevelEditorController::DrawString(int x, int y, const char *string, ...)
 {
     char buffer[128];
-    
+
     va_list arg;
     va_start(arg, string);
     vsprintf(buffer, string, arg);
     va_end(arg);
-    
+
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
-    
+
     gluOrtho2D(0, settings.pixelWidth, settings.pixelHeight, 0);
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    glLoadIdentity(); 
-    
+    glLoadIdentity();
+
     glColor3f(0.4f, 0.5f, 1.0f);
     glRasterPos2i(x, y);
     int32 length = (int32)strlen(buffer);
-    
+
     glPopMatrix();
     glMatrixMode(GL_PROJECTION);
-    glPopMatrix();	
+    glPopMatrix();
 }
 
 
@@ -1764,13 +1758,13 @@ void hdLevelEditorController::DrawExperimentalModelObjects()
 void hdLevelEditorController::SetupProjection()
 {
     float32 ratio = float32(settings.pixelWidth) / float32(settings.pixelHeight);
-    
+
     hdVec2 extents(ratio * m_xExtents, m_yExtents);
     extents *= m_viewZoom;
-    
+
     hdVec2 lower = m_viewCenter - extents;
     hdVec2 upper = m_viewCenter + extents;
-    
+
     settings.screenLower = lower;
     settings.screenUpper = upper;
     glViewport(0, 0, settings.pixelWidth, settings.pixelHeight);
@@ -1784,8 +1778,8 @@ void hdLevelEditorController::SetupProjection()
         hdMatrix mProjection;
         MatrixPerspectiveFovRH(mProjection, 90.0f*(hd_pi/180.0f), 1.0f/1.5f, 0.01f, 100000.0f, false);
         glMultMatrixf(mProjection.f);
-#endif	
-        glTranslatef(-m_viewCenter.x, -m_viewCenter.y, 
+#endif
+        glTranslatef(-m_viewCenter.x, -m_viewCenter.y,
                      -((upper.y - lower.y)/2.0f));
     }
     else
@@ -1798,36 +1792,36 @@ void hdLevelEditorController::SetupProjection()
 void hdLevelEditorController::Draw()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
+
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-    glEnable(GL_BLEND); glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
+    glEnable(GL_BLEND); glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_LINE_SMOOTH);
     glLineWidth(1.0f);
-    
+
     this->SetupProjection();
-    
+
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glPushMatrix();
-    
-    if (settings.testPhysics == 1) 
+
+    if (settings.testPhysics == 1)
     {
         this->DrawString(0, 40, "*** Physics Test On");
         m_physicsWorld->Step(1.0/60.0, 10, 10);
         m_currentLevel->Step();
     }
-    
+
     this->DrawModeInfo();
-    
+
     glMatrixMode(GL_MODELVIEW);
     glPointSize(8.0f);
     glBegin(GL_POINTS);
     glColor3f(0.0f, 0.0f, 0.0f);
     glVertex2f(0.0f, 0.0f);
     glEnd();
-    
+
     glDisable(GL_TEXTURE_2D);
-    
+
     // Draw a grid
     glBegin(GL_LINES);
     glColor4f(0.7f, 0.7f, 0.7f, 1.0f);
@@ -1837,14 +1831,14 @@ void hdLevelEditorController::Draw()
         glVertex2f(x, settings.screenLower.y);
         glVertex2f(x, settings.screenUpper.y);
     }
-    
+
     for (float y = floor(settings.screenLower.y); y <= ceil(settings.screenUpper.y); y += squareBoxSize)
     {
         glVertex2f(settings.screenLower.x, y);
         glVertex2f(settings.screenUpper.x, y);
     }
     glEnd();
-    
+
     // DEBUG: Draw all physics object shape vertices
     if ((m_startClickPoint == m_currentMouseDragPoint) == false)
     {
@@ -1852,21 +1846,21 @@ void hdLevelEditorController::Draw()
         glVertex2f(m_startClickPoint.x, m_startClickPoint.y);
         glVertex2f(m_currentMouseDragPoint.x, m_currentMouseDragPoint.y);
         glEnd();
-        
-        glBegin(GL_LINE_LOOP);		
+
+        glBegin(GL_LINE_LOOP);
         hdVec2 aa = hdMin(m_currentMouseDragPoint, m_startClickPoint);
         hdVec2 bb = hdMax(m_currentMouseDragPoint, m_startClickPoint);
-        
+
         glVertex2f(aa.x, aa.y);
         glVertex2f(bb.x, aa.y);
         glVertex2f(bb.x, bb.y);
         glVertex2f(aa.x, bb.y);
         glEnd();
     }
-    
+
     if (settings.interfaceLayerMode & e_interfaceLayerModeBackground)
         m_currentLevel->GetBackgroundLayer()->Draw();
-    
+
     if (m_currentLevel)
     {
         if (settings.interfaceLayerMode & e_interfaceLayerModeGameLayer)
@@ -1880,7 +1874,7 @@ void hdLevelEditorController::Draw()
                 {
                     m_currentLevel->Draw();
                 }
-                
+
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_DEPTH_TEST);
                 glEnable(GL_CULL_FACE);
@@ -1888,29 +1882,29 @@ void hdLevelEditorController::Draw()
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 glCullFace(GL_FRONT);
                 glDepthMask(GL_TRUE);
-                
+
                 totemBlock *block;
-                
+
                 for (int i = 0; i < m_currentLevel->GetBlockCount(); ++i)
                 {
                     block = m_currentLevel->GetBlocks()[i];
-                    
+
                     if (BlockPassesFilter(block) && !block->IsTransparent())
                     {
                         block->Draw();
-                    }			
+                    }
                 }
-                
+
                 for (int i = 0; i < m_currentLevel->GetBlockCount(); ++i)
                 {
                     block = m_currentLevel->GetBlocks()[i];
-                    
+
                     if (BlockPassesFilter(block) && block->IsTransparent())
                     {
                         block->Draw();
-                    }			
+                    }
                 }
-                
+
                 glEnable(GL_BLEND);
                 if (settings.showPhysics)
                 {
@@ -1919,23 +1913,23 @@ void hdLevelEditorController::Draw()
                         m_currentLevel->GetJoints()[i]->Draw();
                     }
                 }
-                
+
                 for (int i = 0; i < m_currentLevel->GetEvents()->GetItemCount(); ++i)
                 {
                     m_currentLevel->GetEvents()->GetItems()[i]->Draw();
                 }
                 glDisable(GL_CULL_FACE);
-                
+
                 m_currentLevel->DrawFloor();
-                
+
                 glDisable(GL_TEXTURE_2D);
                 glDisable(GL_BLEND);
                 glDisable(GL_DEPTH_TEST);
-                
+
             }
         }
     }
-    
+
     const int k_maxCount = 10;
     hdGameObject* objs[k_maxCount];
     int clickObjectCount = m_gameWorld->PointQuery(hdVec2toVec3(m_currentMouseDragPoint), objs, k_maxCount);
@@ -1945,7 +1939,7 @@ void hdLevelEditorController::Draw()
     {
         for (int i = 0; i < hdMin(clickObjectCount,k_maxCount); i++)
         {
-            if (objs[i] != m_projection) 
+            if (objs[i] != m_projection)
             {
                 // do more fine-grained lookup
                 if (hdConcavePolygonContainsPoint(objs[i]->GetVertices(), objs[i]->GetVertexCount(), objs[i]->GetWorldCenter(),	hdVec2toVec3(m_currentMouseDragPoint)))
@@ -1966,12 +1960,12 @@ void hdLevelEditorController::Draw()
             }
         }
     }
-    
+
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, 0);
-    
+
 #if 0
-    
+
     b2Shape* shape;
     b2Body* body = m_physicsWorld->GetBodyList();
     while(body != NULL)
@@ -1980,7 +1974,7 @@ void hdLevelEditorController::Draw()
         hdglColor4f(1.0f, 0.0f, 1.0f, 1.0f);
         hdglVertex2f(body->GetXForm().position.x, body->GetXForm().position.y);
         hdglEnd();
-        
+
         shape = body->GetShapeList();
         while (shape != NULL)
         {
@@ -1996,7 +1990,7 @@ void hdLevelEditorController::Draw()
             }
             shape = shape->GetNext();
         }
-        
+
         body = body->GetNext();
     }
 #endif
@@ -2012,13 +2006,13 @@ void hdLevelEditorController::Draw()
     {
         hdDrawGameObjectHandles(settings.DEPRECATEDselectedGameObject);
     }
-    
+
     float GameMinScreenWidth = 4.5f;
     float GameMinScreenHeight = 3.0f;
-    
-    float GameMaxScreenWidth = 15.0f; 
+
+    float GameMaxScreenWidth = 15.0f;
     float GameMaxScreenHeight = 10.0f;
-    
+
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
     glColor4f(0.0f, 0.0f, 1.0f, 1.0f);

@@ -18,7 +18,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "hdk.h"
+#import <hdk/hdk.h>
 #import "hdLevelEditorController.h"
 #import "LevelEditor.h"
 

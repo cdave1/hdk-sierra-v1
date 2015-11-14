@@ -18,7 +18,8 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#include "hdInput.h"
+#include <hdk/hdk.h>
+#include <hdk/hdInput/hdMouseInput.h>
 
 @interface EditorView : NSOpenGLView
 {
