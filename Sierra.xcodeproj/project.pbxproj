@@ -65,6 +65,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		E41C07821BF800980032DEC6 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E41C07811BF800980032DEC6 /* README.md */; };
 		E4A95BDE1968CA0500DCD2A0 /* libhdkOSX.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6362D7291188EA2600184AE0 /* libhdkOSX.a */; };
 		E4A95C001968CC3300DCD2A0 /* totemBlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4A95BE21968CC3300DCD2A0 /* totemBlock.cpp */; };
 		E4A95C011968CC3300DCD2A0 /* totemContactManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4A95BE51968CC3300DCD2A0 /* totemContactManager.cpp */; };
@@ -187,6 +188,7 @@
 		63E99FC3118E09C900B47D37 /* PrismaticJointPropertyWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PrismaticJointPropertyWindow.mm; path = Classes/Editor/PrismaticJointPropertyWindow.mm; sourceTree = "<group>"; };
 		63E99FC5118E09DE00B47D37 /* PrismaticJointPropertyWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PrismaticJointPropertyWindow.xib; path = Classes/Editor/PrismaticJointPropertyWindow.xib; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Sierra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sierra.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E41C07811BF800980032DEC6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E4A95BE21968CC3300DCD2A0 /* totemBlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = totemBlock.cpp; path = ../../../../hackdirt.smashed/src/gameClasses/totemBlock.cpp; sourceTree = "<group>"; };
 		E4A95BE31968CC3300DCD2A0 /* totemBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = totemBlock.h; path = ../../../../hackdirt.smashed/src/gameClasses/totemBlock.h; sourceTree = "<group>"; };
 		E4A95BE41968CC3300DCD2A0 /* totemConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = totemConstants.h; path = ../../../../hackdirt.smashed/src/gameClasses/totemConstants.h; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 		29B97314FDCFA39411CA2CEA /* OpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				E41C07811BF800980032DEC6 /* README.md */,
 				63D60FE0118D176700436B7D /* Extensions */,
 				6362D7201188E9F300184AE0 /* Config */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -714,6 +717,7 @@
 				63D60ED8118C310C00436B7D /* TextureImageBrowserView.mm in Sources */,
 				E4A95C091968CC3300DCD2A0 /* totemPolygon.cpp in Sources */,
 				E4A95C0C1968CC3300DCD2A0 /* totemWorldManager.cpp in Sources */,
+				E41C07821BF800980032DEC6 /* README.md in Sources */,
 				63D60FE4118D178700436B7D /* NSImageView+Extensions.mm in Sources */,
 				63E99FC4118E09C900B47D37 /* PrismaticJointPropertyWindow.mm in Sources */,
 				63D4E62A118F6666005A7634 /* hdImageView.mm in Sources */,
